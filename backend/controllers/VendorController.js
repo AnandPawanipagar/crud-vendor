@@ -34,3 +34,18 @@ exports.updateVendor = async (req, res) => {
     vendor,
   });
 };
+// delete vendor
+exports.deleteVendor = async (req, res) => {
+  let vendor = await Vendor.findById(req.params.id);
+  if (!vendor) {
+    return res.status(500).json({
+      success: false,
+      message: "Vendor not found",
+    });
+  }
+  vendor = await vendor.remove();
+  res.status(200).json({
+    success: true,
+    message: "product deleted",
+  });
+};
