@@ -12,7 +12,20 @@ exports.getAllVendors = async (req, res) => {
   const vendors = await Vendor.find();
   res.json({ success: true, vendors });
 };
-
+// get vendor details
+exports.getVendorDetails = async (req, res) => {
+  const vendor = await Vendor.findById(req.params.id);
+  if (!vendor) {
+    res.status(500).json({
+      success: false,
+      message: "Vendor not found",
+    });
+  }
+  res.status(200).json({
+    success: true,
+    vendor,
+  });
+};
 // update vendor
 exports.updateVendor = async (req, res) => {
   let vendor = await Vendor.findById(req.params.id);
