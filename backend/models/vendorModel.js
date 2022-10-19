@@ -3,17 +3,34 @@ const vendorSchema = mongoose.Schema({
   vendorName: {
     type: String,
     required: [true, " Please enter vendor name"],
-    trim: true,
   },
   accountNumber: {
     type: Number,
     required: [true, "Please enter Bank account number"],
-    minLength: [7, "Account number must be more then 7 digits"],
-    maxLength: [17, "Account Number can not exceed 17 digits "],
   },
   bankName: {
     type: String,
     required: [true, "Please enter bank name"],
   },
+  addressOne: {
+    type: String,
+    required: [true, "please enter address 1"],
+  },
+  addressTwo: {
+    type: String,
+    required: [true, "Please enter address 2"],
+  },
+  city: {
+    type: String,
+    required: [true, "plese enter your city"],
+  },
+  country: {
+    type: String,
+    required: [true, "please enter your country"],
+  },
+  zipcode: {
+    type: Number,
+    required: [true, "please enter your pincode"],
+  },
 });
-module.exports=mongoose.model("vendor",vendorSchema)
+module.exports = mongoose.model("vendor", vendorSchema);
