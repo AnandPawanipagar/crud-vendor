@@ -3,10 +3,12 @@ import "./App.css";
 import { Layout, Menu } from "antd";
 import React from "react";
 import CreateVendorForm from "./components/CreateVendorForm";
-
+import MetaData from "./MetaData";
 
 const { Header, Content, Sider } = Layout;
 const App = () => (
+ <>
+ <MetaData title="home page"/>
   <Layout   style={{
     height:"150vh"
   }}>
@@ -44,5 +46,6 @@ const App = () => (
       </Content>
     </Layout>
   </Layout>
+ </>
 );
 export default App;
