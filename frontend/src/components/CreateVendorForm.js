@@ -12,7 +12,7 @@ const CreateVendorForm = () => {
   };
   return (
     <>
- <MetaData title="create-vendor-form"/>
+ <MetaData title="CREATE VENDOR"/>
 
      <Form
       name="basic"

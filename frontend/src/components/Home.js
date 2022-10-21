@@ -3,7 +3,7 @@ import MetaData from "../MetaData";
 const Home = () => {
   return (
     <>
-      <MetaData title="Home" />
+      <MetaData title="HOME" />
       <div>This is Home Page</div>
     </>
   );
