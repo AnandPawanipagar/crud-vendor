@@ -1,14 +1,26 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import CreateVendorForm from "./components/CreateVendorForm";
 import Home from "./components/Home";
 import AllVendors from "./components/AllVendors";
 const { Header, Content, Sider } = Layout;
 
 const App = () => {
+  let [vendorsData, setVendorsData] = useState([]);
   let [ishovering, setIsHovering] = useState(false);
+  const fetchVendors = async () => {
+    const { data } = await axios.get("/vendors");
+
+    setVendorsData(data);
+  };
+
+  useEffect(() => {
+    fetchVendors();
+  }, []);
+  console.log(vendorsData.vendors);
   return (
     <>
       <BrowserRouter>
@@ -36,7 +48,9 @@ const App = () => {
               }}
               className={ishovering ? "active logo" : "logo"}
             >
-              <Link to="/"><div className="company-name"> COMPANY LOGO</div></Link>
+              <Link to="/">
+                <div className="company-name"> COMPANY LOGO</div>
+              </Link>
             </div>
             <Menu theme="dark" mode="inline">
               <Menu.Item>
