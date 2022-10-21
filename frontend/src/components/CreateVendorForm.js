@@ -1,6 +1,7 @@
 import { Button, Form, Input, Row, Col } from "antd";
 
 import React from "react";
+import MetaData from "../MetaData";
 const CreateVendorForm = () => {
   const { TextArea } = Input;
   const onFinish = (values) => {
@@ -10,7 +11,10 @@ const CreateVendorForm = () => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <Form
+    <>
+ <MetaData title="create-vendor-form"/>
+
+     <Form
       name="basic"
       labelCol={{
         span: 24,
@@ -148,6 +152,8 @@ const CreateVendorForm = () => {
         </Col>
       </Row>
     </Form>
+    </>
+   
   );
 };
 export default CreateVendorForm;
