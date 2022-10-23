@@ -46,17 +46,22 @@ const EditVendorForm = ({ vendorsData,record,setEditedRecord,recordIndex,setVend
     if (res.status == 200 || res.status == 204) {
       console.log(recordIndex,"11111", vendorsData[recordIndex],vendorName)
       // vendorsData[recordIndex].vendorName=vendorName
-      vendorsData[recordIndex]={
-        vendorName: vendorName,
-        accountNumber: accountNumber,
-        bankName: bankName,
-        addressOne: addressOne,
-        addressTwo: addressTwo,
-        city: city,
-        country: country,
-        zipcode: zipcode,
-      }
-      setVendorsData({vendors:[...vendorsData]})
+      const vendorsData1=vendorsData.map((o)=>{
+        if(o._id===record._id){
+          return {
+            vendorName: vendorName,
+            accountNumber: accountNumber,
+            bankName: bankName,
+            addressOne: addressOne,
+            addressTwo: addressTwo,
+            city: city,
+            country: country,
+            zipcode: zipcode,
+          }
+        }
+        return o
+      })
+      setVendorsData({vendors:[...vendorsData1]})
       // window.alert("Vendor Edited Successfully");
     }
     setEditedRecord({status:false,data:{}})
