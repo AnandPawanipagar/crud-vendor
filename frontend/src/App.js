@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     fetchVendors();
   }, []);
-  console.log(vendorsData.vendors);
+  // console.log(vendorsData.vendors); 
   return (
     <>
       <BrowserRouter>
@@ -76,7 +76,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="create-vendor/*" element={<CreateVendorForm />} />
-                <Route path="all-vendors-list/*" element={<AllVendors />} />
+                <Route path="all-vendors-list/*" element={<AllVendors vendorsData={vendorsData.vendors} />} />
               </Routes>
             </Content>
           </Layout>
