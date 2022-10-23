@@ -11,6 +11,7 @@ const { Header, Content, Sider } = Layout;
 const App = () => {
   let [vendorsData, setVendorsData] = useState([]);
   let [ishovering, setIsHovering] = useState(false);
+  let [editRecordState,setEditRecordState]=useState()
   const fetchVendors = async () => {
     const { data } = await axios.get("/vendors");
 
