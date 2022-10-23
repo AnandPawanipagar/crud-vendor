@@ -2,7 +2,7 @@ const Vendor = require("../models/vendorModel");
 // creating vendor
 exports.createVendor = async (req, res) => {
   const vendor = await Vendor.create(req.body);
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     vendor,
   });

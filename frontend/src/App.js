@@ -75,7 +75,7 @@ const App = () => {
             >
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="create-vendor/*" element={<CreateVendorForm />} />
+                <Route path="create-vendor/*" element={<CreateVendorForm vendorsData={vendorsData.vendors} />} />
                 <Route path="all-vendors-list/*" element={<AllVendors vendorsData={vendorsData.vendors} />} />
               </Routes>
             </Content>

@@ -5,7 +5,7 @@ const vendorSchema = mongoose.Schema({
     required: [true, " Please enter vendor name"],
   },
   accountNumber: {
-    type: Number,
+    type: String,
     required: [true, "Please enter Bank account number"],
   },
   bankName: {
@@ -29,7 +29,7 @@ const vendorSchema = mongoose.Schema({
     required: [true, "please enter your country"],
   },
   zipcode: {
-    type: Number,
+    type: String,
     required: [true, "please enter your pincode"],
   },
 });
