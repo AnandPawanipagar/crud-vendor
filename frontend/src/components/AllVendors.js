@@ -4,7 +4,7 @@ import { Space, Table, Tag } from "antd";
 import axios from "axios";
 import EditVendorForm from "./EditVendorForm";
 const AllVendors = ({ vendorsData, setVendorsData }) => {
-  const [editedRecord, setEditedRecord] = useState({status:false,data:{}});
+  const [editedRecord, setEditedRecord] = useState({ status: false, data: {} });
   const handleDelete = async (record) => {
     let res = await axios.delete(`http://localhost:5000/vendor/${record._id}`);
     // console.log(vendorsData.filter((o)=>{
@@ -22,26 +22,28 @@ const AllVendors = ({ vendorsData, setVendorsData }) => {
 
     // console.log(text, record, "I data");
   };
-  const handleEdit = async (record) => {
-    setEditedRecord({ status: true, data: { ...record } });
+  const handleEdit = async (record, index) => {
+    setEditedRecord({ status: true, data: { ...record }, recordIndex: index });
+    
   };
   const columns = [
     {
       title: "Options",
       key: "vendorName",
       dataIndex: "vendorName",
-      render: (text, record) => (
+      render: (text, record, index) => (
         <>
           <button
             onClick={() => {
-              handleDelete(record);
+              handleDelete(record, index);
             }}
           >
             {"Delete"}
           </button>
           <button
             onClick={() => {
-              handleEdit(record);
+              // console.log(index,"recordIndex")
+              handleEdit(record, index);
             }}
           >
             {"Edit"}
@@ -93,12 +95,24 @@ const AllVendors = ({ vendorsData, setVendorsData }) => {
   ];
   return (
     <>
-      {editedRecord.status ?<>
-        <EditVendorForm record={editedRecord.data}/>
-      </>:<>
-      <MetaData title="ALL VENDORS" />
-      <Table columns={columns} dataSource={vendorsData} />
-      </>}
+      {editedRecord.status ? (
+        <>
+          <EditVendorForm
+            vendorsData={vendorsData}
+            setVendorsData={setVendorsData}
+            record={editedRecord.data}
+            setEditedRecord={setEditedRecord}
+            recordIndex={
+              editedRecord.recordIndex || editedRecord.recordIndex===0 ? editedRecord.recordIndex : null
+            }
+          />
+        </>
+      ) : (
+        <>
+          <MetaData title="ALL VENDORS" />
+          <Table columns={columns} dataSource={vendorsData} />
+        </>
+      )}
     </>
   );
 };

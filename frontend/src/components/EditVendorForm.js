@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { json } from "react-router-dom";
 import MetaData from "../MetaData";
-const EditVendorForm = ({ vendorsData,record }) => {
+const EditVendorForm = ({ vendorsData,record,setEditedRecord,recordIndex,setVendorsData }) => {
   let [vendorName, setVendorName] = useState(record.vendorName);
   let [accountNumber, setAccountNumber] = useState(record.accountNumber);
   let [bankName, setBankName] = useState(record.bankName);
@@ -15,9 +15,7 @@ const EditVendorForm = ({ vendorsData,record }) => {
   let [zipcode, setZipCode] = useState(record.zipcode);
   const { TextArea } = Input;
   let handleSubmit = async () => {
-    const edited={
-      
-    }
+    const edited={}
     if(vendorName!==record.vendorName){
       edited.vendorName=vendorName
     }
@@ -44,19 +42,24 @@ const EditVendorForm = ({ vendorsData,record }) => {
     }
     
     let res = await axios.put(`http://localhost:5000/vendor/${record._id}`, edited);
-    // if (res.status == 200 || res.status == 204) {
-    //   vendorsData.push({
-    //     vendorName: vendorName,
-    //     accountNumber: accountNumber,
-    //     bankName: bankName,
-    //     addressOne: addressOne,
-    //     addressTwo: addressTwo,
-    //     city: city,
-    //     country: country,
-    //     zipcode: zipcode,
-    //   });
-    //   alert("Vendor Edited Successfully");
-    // }
+    
+    if (res.status == 200 || res.status == 204) {
+      console.log(recordIndex,"11111", vendorsData[recordIndex],vendorName)
+      // vendorsData[recordIndex].vendorName=vendorName
+      vendorsData[recordIndex]={
+        vendorName: vendorName,
+        accountNumber: accountNumber,
+        bankName: bankName,
+        addressOne: addressOne,
+        addressTwo: addressTwo,
+        city: city,
+        country: country,
+        zipcode: zipcode,
+      }
+      setVendorsData({vendors:[...vendorsData]})
+      // window.alert("Vendor Edited Successfully");
+    }
+    setEditedRecord({status:false,data:{}})
   };
 
   return (
