@@ -37,6 +37,8 @@ const CreateVendorForm = ({ vendorsData }) => {
         zipcode: zipcode,
       });
       alert("Vendor Created Successfully");
+
+      window.location.reload();
     }
   };
 
